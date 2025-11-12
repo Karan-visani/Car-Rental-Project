@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpRequest
 from django.contrib.auth.hashers import make_password, check_password
+from utils.validators import email_validator, password_validator
 from .models import User, Role
 
 
@@ -15,15 +16,21 @@ def login(request :HttpRequest):
     password = request.POST.get('password')
 
     if email is None or password is None:
-        return HttpResponse("Email and Password are compulsory")
+         return render(request, 'login.html', {
+           "error": "Email and password are compulsory"
+       })
     
     user = User.objects.filter(email=email).first()
     if user is None:
-        return HttpResponse("Wrong Email or Password")
+          return render(request, 'login.html', {
+           "error": "Wrong email or password"
+       })
     
     is_password_valid = check_password(password, user.password_hash)
     if not is_password_valid:
-        return HttpResponse("Wrong email or password")
+        return render(request, 'login.html', {
+           "error": "Wrong email or password"
+       })
     
     return HttpResponse("Logged in Successfully")
 
@@ -38,10 +45,27 @@ def signup(request :HttpRequest):
     password = request.POST.get('password')
 
     if email is None or password is None :
-        return HttpResponse("Email and Password are compulsory")
+         return render(request, 'signup.html', {
+            "error": "Email and password are compulsory"
+        })
     
-    if User.objects.filter(email=email).exists():
-        return HttpResponse("Sorry, this email is not available")
+    is_email_valid = email_validator.validate(email)
+    if not is_email_valid:
+        return render(request, 'signup.html', {
+            "error": "Invalid email"
+        })
+    
+    is_password_valid = password_validator.validate(password)
+    if not is_password_valid:
+         return render(request, 'signup.html', {
+            "error": "Password must contain at least 8 characters, 1 capital, 1 small, 1 number, and 1 special char"
+        })
+    
+    existing_user = User.objects.filter(email=email)
+    if existing_user.count() > 0:
+        return render(request, 'signup.html', {
+            "error": "Sorry, this email is not available"
+        })
     
     customer_role = Role.objects.get(name="Customer")
 
@@ -51,4 +75,6 @@ def signup(request :HttpRequest):
     user.role = customer_role
     user.save()
 
-    return HttpResponse("Successfully Signed Up") 
+    return render(request, 'signup.html', {
+        "success": "Signed up successfully"
+    })
