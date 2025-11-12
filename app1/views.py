@@ -8,6 +8,9 @@ from .models import User, Role
 # Create your views here.
 def login_page(request :HttpRequest):
     if request.method == 'GET':
+        if request.COOKIES.get('email') is not None:
+            return redirect('/home')
+        
         return render(request, 'login.html')
     return login(request)
 
@@ -32,11 +35,21 @@ def login(request :HttpRequest):
            "error": "Wrong email or password"
        })
     
-    return HttpResponse("Logged in Successfully")
+    response = redirect("/home")
+    response.set_cookie(
+        key='email',
+        value=email,
+        max_age=3600
+    )
+    
+    return response
 
 
 def signup_page(request :HttpRequest):
     if request.method == 'GET':
+        if request.COOKIES.get('email') is not None:
+            return redirect('/users/home')
+        
         return render(request,'signup.html')
     return signup(request)
 

@@ -18,3 +18,10 @@ class User(models.Model):
 
     def __str__(self):
         return self.email
+    
+class Categories(models.Model):
+    category_name = models.CharField(max_length=100)
+    category_image = models.ImageField(upload_to="categories")
+    
+    def __str__(self):
+        return self.category_name
