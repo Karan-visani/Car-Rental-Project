@@ -21,6 +21,10 @@ def login(request :HttpRequest):
     if user is None:
         return HttpResponse("Wrong Email or Password")
     
+    is_password_valid = check_password(password, user.password_hash)
+    if not is_password_valid:
+        return HttpResponse("Wrong email or password")
+    
     return HttpResponse("Logged in Successfully")
 
 

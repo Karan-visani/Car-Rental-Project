@@ -1,0 +1,129 @@
+body{
+    background: url('https://canepa.com/wp-content/uploads/2014/06/faded-cars-bg.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+h2{
+    color: white;
+}
+.navbar {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(6px);
+  }
+  
+  .navbar .nav-link {
+    margin: 0 10px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  body {
+    padding-top: 70px;
+  }
+  
+  .navbar .nav-link:hover {
+    color: #ffd700 !important; /* golden hover effect */
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+  
+
+#loginBox{
+    box-shadow: 10px 10px 10px rgb(231, 229, 229,0.5);
+    position: absolute;
+    height: 500px;
+    width: 450px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 2px solid wheat;
+    border-radius: 20px;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    padding: 30px;
+    margin-top: 30px;
+}
+.nav-item {
+    width:50%;
+  }
+
+#loginBox button{
+    width: 90%;
+    margin: 10px;
+   
+}
+
+#loginBox a{
+    text-decoration: none;
+    color: white;
+}
+
+#loginBox a:hover{
+    text-decoration:underline;
+}
+
+#icons{
+    color: white;
+    font-size: 30px;
+}
+
+#ic:hover{
+ cursor: pointer;
+}
+#Signbox{
+    box-shadow: 30px 30px 30px black(234, 16, 16, 0.5);
+    position: absolute;
+    height: auto;
+    width: 550px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 2px solid wheat;
+    border-radius: 20px;
+    align-items: center;
+    backdrop-filter: blur(15px);
+    padding: 30px;
+}
+#Signbox button{
+    width: 90%;
+    margin: 10px;
+   
+}
+
+#Signbox a{
+    text-decoration: none;
+    color: white;
+}
+
+#Signbox a:hover{
+    text-decoration:underline;
+}
+
+.custom-navbar {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  }
+  
+  .custom-navbar .nav-link {
+    margin: 0 10px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .custom-navbar .nav-link:hover {
+    color: #ffd700 !important; /* golden hover */
+  }
+  
+  .custom-navbar .navbar-brand {
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+  }
+  
