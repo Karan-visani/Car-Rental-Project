@@ -1,4 +1,28 @@
 {% include 'header.html' %}
-<h1>Welcome user</h1>
+<h1 class="text-center mt-4">Welcome User</h1>
+
+<div class="container mt-5 bg-light p-4 rounded">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="m-0"><b>Brands Available</b></h2>
+    <a href="/categories/" class="btn btn-success">+ Add Brand</a>
+  </div>
+
+  <div class="row">
+    {% for category in categories %}
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card h-100 shadow-sm" style="border:2px solid black;">
+          <img src="{{ category.category_image.url }}" 
+               alt="{{ category.category_name }}" 
+               class="card-img-top" 
+               style="height:200px; object-fit:cover; border-bottom:1px solid black;">
+          <div class="card-body text-center">
+            <h5 class="card-title fw-bold">{{ category.category_name }}</h5>
+            <a href="#" class="btn btn-sm text-white" style="background-color: #fa7046;">Show More..</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
 
 {% include 'footer.html' %}

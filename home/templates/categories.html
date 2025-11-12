@@ -1,0 +1,25 @@
+{% include 'header.html' %}
+
+<div class="container mt-5">
+  <h3 class="text-center mb-4">Add New Category</h3>
+
+  <form method="post" enctype="multipart/form-data" class="p-4 border rounded bg-light shadow">
+    {% csrf_token %}
+    
+    <div class="form-group mb-3">
+      <label for="categoryName">Category Name</label>
+      <input type="text" class="form-control" id="categoryName" name="category_name" placeholder="Enter category name" required>
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="categoryImage">Category Image</label>
+      <input type="file" class="form-control" id="categoryImage" name="category_image" required>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-success px-5">Add Category</button>
+    </div>
+  </form>
+</div>
+
+{% include 'footer.html' %}
