@@ -26,7 +26,7 @@ h2{
   }
   
   .navbar .nav-link:hover {
-    color: #ffd700 !important; /* golden hover effect */
+    color: #ffd700 !important;
   }
   
   .navbar-brand {
@@ -119,7 +119,7 @@ h2{
   }
   
   .custom-navbar .nav-link:hover {
-    color: #ffd700 !important; /* golden hover */
+    color: #ffd700 !important; 
   }
   
   .custom-navbar .navbar-brand {
