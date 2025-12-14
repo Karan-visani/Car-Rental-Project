@@ -1,0 +1,66 @@
+{% include 'admheader.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+    <a href="/dashboard/add_categories" class="btn btn-primary">Add Brand</a>
+
+    <div class="row mt-3">
+        <div class="col-12"> 
+            <div class="card my-4">
+                <div class="card-body px-0 pb-2">
+                    <h3 class="text-black text-center text-capitalize mt-1 ps-3">Vehicle Brands</h3>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Sr No</th>
+                                    <th>Category</th>
+                                    <th>Image</th>
+                                    <th>Operations</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for item in categories %}
+                                <tr class="table-primary">
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ item.category_name }}</td>
+                                    <td>
+                                        {% if item.category_image %}
+                                            <img src="{{ item.category_image.url }}" height="100" width="130">
+                                        {% else %}
+                                            <img src="{% static 'img/no_image.jpg' %}" height="100" width="130">
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a  class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a href="{% url 'delete_category' %}?id={{ item.id }}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="4" class="text-center">No Categories Found</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+{% include 'admfooter.html' %}

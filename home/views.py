@@ -35,3 +35,6 @@ def categories(request):
     
     all_categories = Categories.objects.all()
     return render(request, 'categories.html', {'categories': all_categories})
+
+
+
