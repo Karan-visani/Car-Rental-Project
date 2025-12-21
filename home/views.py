@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest
-from app1.models import Categories
+from app1.models import Categories,Vehicle
 
 
 def home(request: HttpRequest):
@@ -8,7 +8,11 @@ def home(request: HttpRequest):
         return redirect('/users/login')
 
     all_categories = Categories.objects.all()
-    return render(request, 'home.html', {'categories': all_categories})
+    vehicles = Vehicle.objects.all()
+    return render(request, 'home.html', {
+        'categories': all_categories,
+        'vehicles': vehicles
+        })
 
 def logout(request: HttpRequest):
     response = redirect('/users/login')
@@ -30,11 +34,22 @@ def categories(request):
                 category_name=category_name,
                 category_image=category_image,
             )
-        return redirect('/categories/')
+        return redirect('/home/categories/')
 
     
     all_categories = Categories.objects.all()
-    return render(request, 'categories.html', {'categories': all_categories})
+    return render(request, 'categories.html', {
+        'categories': all_categories
+        })
 
+
+def vehicle_list(request):
+    vehicles = Vehicle.objects.all()
+    return render(request, 'vehicles.html', {'vehicles': vehicles})
+
+
+def vehicle_detail(request, id):
+    vehicle = get_object_or_404(Vehicle, id=id)
+    return render(request, 'vehicle_detail.html', {'vehicle': vehicle})
 
 

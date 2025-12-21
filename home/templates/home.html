@@ -1,13 +1,15 @@
 {% include 'header.html' %}
+
 <h1 class="text-center mt-4">Welcome User</h1>
 
 <div class="container mt-5 bg-light p-4 rounded">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="m-0"><b>Brands Available</b></h2>
-    <!-- <a href="/categories/" class="btn btn-success">+ Add Brand</a> -->
-  </div>
 
-  <div class="row">
+    <!-- ================= CATEGORIES SECTION ================= -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="m-0"><b>Brands Available</b></h2>
+    </div>
+
+    <div class="row">
     {% for category in categories %}
       <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100 shadow-sm" style="border:2px solid black;">
@@ -23,6 +25,42 @@
       </div>
     {% endfor %}
   </div>
+
+    <hr class="my-5">
+
+    <!-- ================= VEHICLES SECTION ================= -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="m-0"><b>Explore Our Vehicles</b></h2>
+    </div>
+
+    <div class="row">
+        {% for vehicle in vehicles %}
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100 shadow-sm" style="border:2px solid black;">
+
+                <img src="{{ vehicle.vehicle_pic.url }}"
+                     class="card-img-top"
+                     style="height:200px; object-fit:contain; border-bottom:1px solid black;"
+                     alt="{{ vehicle.vehicle_name }}">
+
+                <div class="card-body text-center">
+                    <h6 class="fw-bold">{{ vehicle.vehicle_name }}</h6>
+                    <p class="mb-2">₹{{ vehicle.price }}/Hour</p>
+                </div>
+
+                <div class="card-footer text-center bg-white">
+                    <a href="{% url 'vehicle_detail' vehicle.id %}"
+                       class="btn btn-sm text-white"
+                       style="background-color:#fa7046;">
+                        More Detail
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
 </div>
 
 {% include 'footer.html' %}

@@ -22,12 +22,16 @@ def categories(request):
             return redirect('/categories/')
 
     all_categories = Categories.objects.all()
-    return render(request, 'categories.html', {'categories': all_categories})
+    return render(request, 'categories.html', {
+        'categories': all_categories
+        })
 
 
 def show_categories(request: HttpRequest):
     all_categories = Categories.objects.all()
-    return render(request, 'showcategory.html', {'categories': all_categories})
+    return render(request, 'showcategory.html', {
+        'categories': all_categories
+        })
 
 def add_categories(request):
     if request.method == "POST":
@@ -43,7 +47,9 @@ def add_categories(request):
 
     
     all_categories = Categories.objects.all()
-    return render(request, 'categories.html', {'categories': all_categories})
+    return render(request, 'categories.html', {
+        'categories': all_categories
+        })
 
 
 def delete_category(request):
@@ -59,3 +65,9 @@ def delete_category(request):
         category.delete()
 
     return redirect('/dashboard/show_categories')
+
+
+def logout(request: HttpRequest):
+    response = redirect('/users/login')
+    response.delete_cookie('email')
+    return response

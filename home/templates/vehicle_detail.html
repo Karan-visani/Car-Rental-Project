@@ -1,0 +1,38 @@
+{% include 'header.html' %}
+
+<div class="container mt-5">
+    <h2>{{ vehicle.vehicle_name }}</h2>
+
+    <div class="row mt-4">
+        <div class="col-md-5">
+            <img src="{{ vehicle.vehicle_pic.url }}"
+                 class="img-fluid">
+        </div>
+
+        <div class="col-md-7">
+            <h4>₹{{ vehicle.price }}/Day</h4>
+
+            <p><b>Category:</b> {{ vehicle.category }}</p>
+            <p><b>Fuel Type:</b> {{ vehicle.fuel_type }}</p>
+            <p><b>Seater:</b> {{ vehicle.seater }}</p>
+            <p><b>Engine:</b> {{ vehicle.engine }}</p>
+            <p><b>Vehicle Type:</b> {{ vehicle.vehicle_type }}</p>
+            <p><b>Color:</b> {{ vehicle.color }}</p>
+
+            {% if vehicle.status %}
+                <button class="btn btn-dark" disabled>Unavailable</button>
+            {% else %}
+                <button class="btn text-white" style="background:#fe5b29">
+                    Rent Now
+                </button>
+            {% endif %}
+        </div>
+    </div>
+
+    <hr>
+
+    <h4>Description</h4>
+    <p>{{ vehicle.vehicle_desc }}</p>
+</div>
+
+{% include 'footer.html' %}

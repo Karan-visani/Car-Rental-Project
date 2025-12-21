@@ -35,7 +35,11 @@ def login(request :HttpRequest):
            "error": "Wrong email or password"
        })
     
-    response = redirect("/home")
+    if user.role.name == "Admin":
+        response =  redirect('/dashboard/')
+    else:
+        response =  redirect('/home/') 
+
     response.set_cookie(
         key='email',
         value=email,
